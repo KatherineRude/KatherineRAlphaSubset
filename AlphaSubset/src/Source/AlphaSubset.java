@@ -8,13 +8,13 @@ public class AlphaSubset {
   private ArrayList<Character> mSubset;
   
   public AlphaSubset(String phrase){
-    if (this.validate(phrase)) {
+    if (phrase != null && this.validate(phrase)) {
       this.mPhrase = phrase;
+      String phraseUpper = phrase.toUpperCase();
       this.mSubset = new ArrayList<Character>();
-      // create the subset here
-      for(int i=0; i<phrase.length();i++) {
-        if(Character.isLetter(phrase.charAt(i)) && !mSubset.contains(phrase.charAt(i))) {
-          mSubset.add(phrase.charAt(i));
+      for(int i=0; i<phraseUpper.length();i++) {
+        if(Character.isLetter(phraseUpper.charAt(i)) && !mSubset.contains(phraseUpper.charAt(i))) {
+          mSubset.add(phraseUpper.charAt(i));
         }
       }
       java.util.Collections.sort(mSubset);
@@ -40,7 +40,7 @@ public class AlphaSubset {
   private boolean validate(String phrase) {
     if(phrase.contains("[") || phrase.contains("]") || phrase.contains("{") || phrase.contains("}")
       || phrase.contains("/") || phrase.contains("\\") || phrase.contains("_") || phrase.contains("+")
-      || phrase.contains("=") || phrase.contains("^")){
+      || phrase.contains("=") || phrase.contains("^") || phrase.contains("<") || phrase.contains(">")){
       return false;
     }
     else {
