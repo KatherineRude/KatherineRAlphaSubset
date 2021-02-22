@@ -7,9 +7,10 @@ public class AlphaSubset {
   private String mPhrase;
   private ArrayList<Character> mSubset;
   
-  AlphaSubset(String phrase){
-    if (this.validate()) {
+  public AlphaSubset(String phrase){
+    if (this.validate(phrase)) {
       this.mPhrase = phrase;
+      this.mSubset = new ArrayList<Character>();
       // create the subset here
       for(int i=0; i<phrase.length();i++) {
         if(Character.isLetter(phrase.charAt(i)) && !mSubset.contains(phrase.charAt(i))) {
@@ -20,7 +21,7 @@ public class AlphaSubset {
     }
     else {
       this.mPhrase = "";
-      this.mSubset = null;
+      this.mSubset = new ArrayList<Character>();
     }
   }
   
@@ -36,10 +37,10 @@ public class AlphaSubset {
     return this.mSubset;
   }
   
-  private boolean validate() {
-    if(this.mPhrase.contains("[") || this.mPhrase.contains("]") || this.mPhrase.contains("{") || this.mPhrase.contains("}")
-      || this.mPhrase.contains("/") || this.mPhrase.contains("\\") || this.mPhrase.contains("_") || this.mPhrase.contains("+")
-      || this.mPhrase.contains("=") || this.mPhrase.contains("^")){
+  private boolean validate(String phrase) {
+    if(phrase.contains("[") || phrase.contains("]") || phrase.contains("{") || phrase.contains("}")
+      || phrase.contains("/") || phrase.contains("\\") || phrase.contains("_") || phrase.contains("+")
+      || phrase.contains("=") || phrase.contains("^")){
       return false;
     }
     else {
